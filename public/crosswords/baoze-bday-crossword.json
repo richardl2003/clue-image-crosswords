@@ -244,7 +244,7 @@
       },
       {
         "number": 4,
-        "clue": "Across clue for BAOZE",
+        "clue": "baoze.png",
         "answer": "BAOZE",
         "row": 6,
         "col": 4
@@ -258,42 +258,42 @@
       },
       {
         "number": 6,
-        "clue": "Across clue for ARJUN",
+        "clue": "arjun.png",
         "answer": "ARJUN",
         "row": 8,
         "col": 0
       },
       {
         "number": 7,
-        "clue": "Across clue for LEANNE",
+        "clue": "leanne.png",
         "answer": "LEANNE",
         "row": 9,
         "col": 5
       },
       {
         "number": 8,
-        "clue": "Across clue for HADY",
+        "clue": "hady.png",
         "answer": "HADY",
         "row": 11,
         "col": 1
       },
       {
         "number": 9,
-        "clue": "Across clue for CLARA",
+        "clue": "clara.png",
         "answer": "CLARA",
         "row": 11,
         "col": 7
       },
       {
         "number": 10,
-        "clue": "Across clue for URSULA",
+        "clue": "ursula.png",
         "answer": "URSULA",
         "row": 13,
         "col": 0
       },
       {
         "number": 11,
-        "clue": "Across clue for DANIEL",
+        "clue": "daniel.png",
         "answer": "DANIEL",
         "row": 13,
         "col": 8
@@ -302,70 +302,70 @@
     "down": [
       {
         "number": 1,
-        "clue": "Down clue for FAITH",
+        "clue": "faith.png",
         "answer": "FAITH",
         "row": 0,
         "col": 5
       },
       {
         "number": 2,
-        "clue": "Down clue for MELODY",
+        "clue": "melody.png",
         "answer": "MELODY",
         "row": 0,
         "col": 11
       },
       {
         "number": 3,
-        "clue": "Down clue for SEAYA",
+        "clue": "seaya.png",
         "answer": "SEAYA",
         "row": 1,
         "col": 2
       },
       {
         "number": 4,
-        "clue": "Down clue for KIRSTEN",
+        "clue": "kirsten.png",
         "answer": "KIRSTEN",
         "row": 1,
         "col": 8
       },
       {
         "number": 5,
-        "clue": "Down clue for SUBIN",
+        "clue": "subin.png",
         "answer": "SUBIN",
         "row": 4,
         "col": 4
       },
       {
         "number": 6,
-        "clue": "Down clue for ALEXIS",
+        "clue": "alexis.png",
         "answer": "ALEXIS",
         "row": 4,
         "col": 13
       },
       {
         "number": 7,
-        "clue": "Down clue for ZARA",
+        "clue": "zara.png",
         "answer": "ZARA",
         "row": 6,
         "col": 7
       },
       {
         "number": 8,
-        "clue": "Down clue for RICHARD",
+        "clue": "richard.png",
         "answer": "RICHARD",
         "row": 8,
         "col": 1
       },
       {
         "number": 9,
-        "clue": "Down clue for DERRON",
+        "clue": "derron.png",
         "answer": "DERRON",
         "row": 8,
         "col": 10
       },
       {
         "number": 10,
-        "clue": "Down clue for DOM",
+        "clue": "dom.png",
         "answer": "DOM",
         "row": 13,
         "col": 8
