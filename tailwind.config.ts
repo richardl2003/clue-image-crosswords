@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,16 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				'crossword-bg': 'hsl(var(--crossword-bg))',
+				'crossword-cell': 'hsl(var(--crossword-cell))',
+				'crossword-cell-border': 'hsl(var(--crossword-cell-border))',
+				'crossword-filled': 'hsl(var(--crossword-filled))',
+				'crossword-highlight': 'hsl(var(--crossword-highlight))',
+				'crossword-highlight-clue': 'hsl(var(--crossword-highlight-clue))',
+				'crossword-text': 'hsl(var(--crossword-text))',
+				'crossword-number': 'hsl(var(--crossword-number))',
+				'crossword-title': 'hsl(var(--crossword-title))',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -70,25 +80,20 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out'
+			},
+			fontFamily: {
+				serif: ['Georgia', 'Times New Roman', 'serif']
 			}
 		}
 	},

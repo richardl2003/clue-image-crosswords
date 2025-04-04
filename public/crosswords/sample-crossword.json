@@ -1,0 +1,212 @@
+
+{
+  "title": "New York Times Style Crossword",
+  "author": "Lovable Crosswords",
+  "date": "April 4, 2025",
+  "size": {
+    "rows": 13,
+    "cols": 13
+  },
+  "grid": [
+    ["A","Y","E","S","H","A",null,"S","A","N","D","R","A"],
+    [null,"A",null,"E",null,"I",null,"I",null,"O",null,"A",null],
+    ["S","E","A",null,"F","A","I","T","H",null,"L","O","X"],
+    ["E",null,"B","A","O","Z","E",null,"A","N","N",null,"I"],
+    ["A","R","J","U","N",null,null,"A","R",null,"D",null,"S"],
+    [null,"I",null,null,null,"L","E","A","N","N","E",null,null],
+    [null,"C",null,null,null,null,null,null,null,"R",null,null,null],
+    [null,"H","A","D","Y",null,"C","L","A","R","A",null,null],
+    [null,"A",null,null,null,null,"O",null,null,null,"O",null,null],
+    ["U","R","S","U","L","A",null,"D","A","N","I","E","L"],
+    [null,"D",null,null,null,null,"O",null,null,null,null,null,null],
+    [null,null,null,null,null,null,"M",null,null,null,null,null,null]
+  ],
+  "clues": {
+    "across": [
+      {
+        "number": 1,
+        "clue": "photo-1461749280684-dccba630e2f6",
+        "answer": "AYESHA",
+        "row": 0,
+        "col": 0
+      },
+      {
+        "number": 7,
+        "clue": "photo-1470813740244-df37b8c1edcb",
+        "answer": "SANDRA",
+        "row": 0,
+        "col": 7
+      },
+      {
+        "number": 13,
+        "clue": "photo-1500673922987-e212871fec22",
+        "answer": "SEA",
+        "row": 2,
+        "col": 0
+      },
+      {
+        "number": 14,
+        "clue": "photo-1466442929976-97f336a657be",
+        "answer": "FAITH",
+        "row": 2,
+        "col": 4
+      },
+      {
+        "number": 15,
+        "clue": "photo-1517022812141-23620dba5c23",
+        "answer": "LOX",
+        "row": 2,
+        "col": 10
+      },
+      {
+        "number": 16,
+        "clue": "photo-1461749280684-dccba630e2f6",
+        "answer": "BAOZE",
+        "row": 3,
+        "col": 2
+      },
+      {
+        "number": 17,
+        "clue": "photo-1470813740244-df37b8c1edcb",
+        "answer": "ANN",
+        "row": 3,
+        "col": 8
+      },
+      {
+        "number": 18,
+        "clue": "photo-1500673922987-e212871fec22",
+        "answer": "ARJUN",
+        "row": 4,
+        "col": 0
+      },
+      {
+        "number": 19,
+        "clue": "photo-1466442929976-97f336a657be",
+        "answer": "AR",
+        "row": 4,
+        "col": 7
+      },
+      {
+        "number": 20,
+        "clue": "photo-1517022812141-23620dba5c23",
+        "answer": "LEANNE",
+        "row": 5,
+        "col": 5
+      },
+      {
+        "number": 21,
+        "clue": "photo-1461749280684-dccba630e2f6",
+        "answer": "HADY",
+        "row": 7,
+        "col": 1
+      },
+      {
+        "number": 22,
+        "clue": "photo-1470813740244-df37b8c1edcb",
+        "answer": "CLARA",
+        "row": 7,
+        "col": 6
+      },
+      {
+        "number": 23,
+        "clue": "photo-1500673922987-e212871fec22",
+        "answer": "URSULA",
+        "row": 9,
+        "col": 0
+      },
+      {
+        "number": 24,
+        "clue": "photo-1466442929976-97f336a657be",
+        "answer": "DANIEL",
+        "row": 9,
+        "col": 7
+      }
+    ],
+    "down": [
+      {
+        "number": 1,
+        "clue": "photo-1461749280684-dccba630e2f6",
+        "answer": "ASEA",
+        "row": 0,
+        "col": 0
+      },
+      {
+        "number": 2,
+        "clue": "photo-1470813740244-df37b8c1edcb",
+        "answer": "YEARCH",
+        "row": 0,
+        "col": 1
+      },
+      {
+        "number": 3,
+        "clue": "photo-1500673922987-e212871fec22",
+        "answer": "EAB",
+        "row": 0,
+        "col": 2
+      },
+      {
+        "number": 4,
+        "clue": "photo-1466442929976-97f336a657be",
+        "answer": "SFA",
+        "row": 0,
+        "col": 3
+      },
+      {
+        "number": 5,
+        "clue": "photo-1517022812141-23620dba5c23",
+        "answer": "HIAO",
+        "row": 0,
+        "col": 4
+      },
+      {
+        "number": 6,
+        "clue": "photo-1461749280684-dccba630e2f6",
+        "answer": "AIZL",
+        "row": 0,
+        "col": 5
+      },
+      {
+        "number": 7,
+        "clue": "photo-1470813740244-df37b8c1edcb",
+        "answer": "SIRAN",
+        "row": 0,
+        "col": 7
+      },
+      {
+        "number": 8,
+        "clue": "photo-1500673922987-e212871fec22",
+        "answer": "ANARC",
+        "row": 0,
+        "col": 8
+      },
+      {
+        "number": 9,
+        "clue": "photo-1466442929976-97f336a657be",
+        "answer": "NONDO",
+        "row": 0,
+        "col": 9
+      },
+      {
+        "number": 10,
+        "clue": "photo-1517022812141-23620dba5c23",
+        "answer": "DNE",
+        "row": 0,
+        "col": 10
+      },
+      {
+        "number": 11,
+        "clue": "photo-1461749280684-dccba630e2f6",
+        "answer": "RALO",
+        "row": 0,
+        "col": 11
+      },
+      {
+        "number": 12,
+        "clue": "photo-1470813740244-df37b8c1edcb",
+        "answer": "AXIS",
+        "row": 0,
+        "col": 12
+      }
+    ]
+  }
+}
