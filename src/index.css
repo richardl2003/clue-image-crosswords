@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -53,8 +52,6 @@
     --crossword-text: 0 0% 20%;
     --crossword-number: 0 0% 50%;
     --crossword-title: 206 100% 20%;
-    --crossword-incorrect: 0 100% 97%;
-    --crossword-incorrect-text: 0 100% 45%;
   }
 
   .dark {
@@ -103,8 +100,6 @@
     --crossword-text: 0 0% 90%;
     --crossword-number: 0 0% 70%;
     --crossword-title: 206 100% 80%;
-    --crossword-incorrect: 0 60% 20%;
-    --crossword-incorrect-text: 0 100% 80%;
   }
 }
 
@@ -150,10 +145,6 @@
   @apply bg-[hsl(var(--crossword-highlight-clue))];
 }
 
-.crossword-cell.incorrect {
-  @apply bg-[hsl(var(--crossword-incorrect))] text-[hsl(var(--crossword-incorrect-text))];
-}
-
 .crossword-cell-number {
   @apply absolute top-0 left-0.5 text-xs text-[hsl(var(--crossword-number))] font-normal;
 }
@@ -191,21 +182,6 @@
   
   .crossword-clue-list {
     max-height: 500px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .crossword-clue-section {
-    @apply w-1/2;
-  }
-  
-  .crossword-clues-container {
-    @apply flex-row w-full;
-  }
-  
-  .crossword-clue-list {
-    height: auto;
-    max-height: none;
   }
 }
 
