@@ -112,49 +112,6 @@ const Index = () => {
           <div className="text-xl">No crossword puzzle loaded</div>
         </div>
       )}
-
-      <div className="mt-12 max-w-2xl mx-auto px-4 text-center text-muted-foreground">
-        <h3 className="text-lg font-medium mb-4">
-          How to Create Custom Puzzles
-        </h3>
-        <p className="mb-2">
-          To create your own crossword puzzle, prepare a JSON file with the
-          following structure:
-        </p>
-        <pre className="text-left p-4 bg-secondary rounded-md overflow-auto text-sm mb-6">
-          {`{
-  "title": "Your Puzzle Title",
-  "author": "Your Name",
-  "date": "Date Created",
-  "size": { "rows": 5, "cols": 5 },
-  "grid": [
-    ["C", "A", "T", null, "D"],
-    ["O", null, "R", "E", "A"],
-    [null, null, null, null, null],
-    // Additional rows...
-  ],
-  "clues": {
-    "across": [
-      {
-        "number": 1,
-        "clue": "photo-filename",
-        "answer": "CAT",
-        "row": 0,
-        "col": 0
-      }
-      // Additional across clues...
-    ],
-    "down": [
-      // Down clues...
-    ]
-  }
-}`}
-        </pre>
-        <p>
-          Use null for black squares. For image clues, use Unsplash image IDs
-          (like "photo-1234567890").
-        </p>
-      </div>
     </div>
   );
 };

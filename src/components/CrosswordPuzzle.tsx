@@ -202,7 +202,7 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
         ) {
           const cellValue = grid[clue.row][col].value;
           const expectedValue = data.grid[clue.row][col] as string;
-          
+
           if (cellValue == "") {
             isCorrect = false;
             isFilled = false;
@@ -261,13 +261,13 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
 
   const checkAnswers = () => {
     if (!data || !data.grid) return;
-    console.log(clueStatuses)
-    
+    console.log(clueStatuses);
+
     let isCorrect = true;
-    const newStatuses: {[key: string]: boolean} = {};
-    const newIncorrectCells: {[key: string]: boolean} = {};
-    
-    data.clues.across.forEach(clue => {
+    const newStatuses: { [key: string]: boolean } = {};
+    const newIncorrectCells: { [key: string]: boolean } = {};
+
+    data.clues.across.forEach((clue) => {
       var isCorrectWord = true;
       var isFilled = true;
       for (let c = 0; c < clue.answer.length; c++) {
@@ -278,7 +278,7 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
         ) {
           const cellValue = grid[clue.row][col].value;
           const expectedValue = data.grid[clue.row][col] as string;
-          
+
           if (cellValue == "") {
             isCorrect = false;
             isCorrectWord = false;
@@ -293,12 +293,10 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
       }
 
       const clueKey = `across-${clue.number}`;
-      newStatuses[clueKey] = isFilled
-        ? isCorrectWord
-        : null;
+      newStatuses[clueKey] = isFilled ? isCorrectWord : null;
     });
-    
-    data.clues.down.forEach(clue => {
+
+    data.clues.down.forEach((clue) => {
       var isCorrectWord = true;
       var isFilled = true;
       for (let r = 0; r < clue.answer.length; r++) {
@@ -306,7 +304,7 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
         if (row < data.grid.length && data.grid[row][clue.col] !== null) {
           const cellValue = grid[row][clue.col].value;
           const expectedValue = data.grid[row][clue.col] as string;
-          
+
           if (cellValue == "") {
             isCorrect = false;
             isCorrectWord = false;
@@ -321,11 +319,9 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
       }
 
       const clueKey = `down-${clue.number}`;
-      newStatuses[clueKey] = isFilled
-        ? isCorrectWord
-        : null;
+      newStatuses[clueKey] = isFilled ? isCorrectWord : null;
     });
-    
+
     setClueStatuses(newStatuses);
     setIncorrectCells(newIncorrectCells);
 
@@ -514,49 +510,6 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="mt-12 max-w-2xl mx-auto px-4 text-center text-muted-foreground">
-        <h3 className="text-lg font-medium mb-4">
-          How to Create Custom Puzzles
-        </h3>
-        <p className="mb-2">
-          To create your own crossword puzzle, prepare a JSON file with the
-          following structure:
-        </p>
-        <pre className="text-left p-4 bg-secondary rounded-md overflow-auto text-sm mb-6">
-          {`{
-  "title": "Your Puzzle Title",
-  "author": "Your Name",
-  "date": "Date Created",
-  "size": { "rows": 5, "cols": 5 },
-  "grid": [
-    ["C", "A", "T", null, "D"],
-    ["O", null, "R", "E", "A"],
-    [null, null, null, null, null],
-    // Additional rows...
-  ],
-  "clues": {
-    "across": [
-      {
-        "number": 1,
-        "clue": "photo-filename",
-        "answer": "CAT",
-        "row": 0,
-        "col": 0
-      }
-      // Additional across clues...
-    ],
-    "down": [
-      // Down clues...
-    ]
-  }
-}`}
-        </pre>
-        <p>
-          Use null for black squares. For image clues, use Unsplash image IDs
-          (like "photo-1234567890").
-        </p>
       </div>
     </div>
   );
