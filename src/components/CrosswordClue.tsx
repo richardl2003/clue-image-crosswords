@@ -1,8 +1,7 @@
-
-import React from 'react';
-import { cn } from '@/lib/utils';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
-import { CheckIcon } from 'lucide-react';
+import React from "react";
+import { cn } from "@/lib/utils";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { CheckIcon } from "lucide-react";
 
 interface CrosswordClueProps {
   number: number;
@@ -22,36 +21,36 @@ const CrosswordClue: React.FC<CrosswordClueProps> = ({
   isCorrect,
 }) => {
   return (
-    <div 
+    <div
       className={cn(
-        'crossword-clue-item group',
-        isActive && 'active',
-        isCorrect === true && 'correct',
-        isCorrect === false && 'incorrect'
-      )} 
+        "crossword-clue-item group",
+        isActive && "active",
+        isCorrect === true && "correct",
+        isCorrect === false && "incorrect"
+      )}
       onClick={onClick}
     >
       <div className="crossword-clue-number">{number}.</div>
       <div className="flex-1">
         <Dialog>
           <DialogTrigger asChild>
-            <img 
-              src={`https://images.unsplash.com/${imageUrl}`} 
-              alt={`Clue ${number}`} 
+            <img
+              src={`/images/${imageUrl}`}
+              alt={`Clue ${number}`}
               className="crossword-clue-image cursor-pointer"
             />
           </DialogTrigger>
           <DialogContent className="max-w-3xl">
-            <img 
-              src={`https://images.unsplash.com/${imageUrl}`} 
+            <img
+              src={`/images/${imageUrl}`}
               alt={`Clue ${number}`}
-              className="w-full rounded-lg object-cover" 
+              className="w-full rounded-lg object-cover"
             />
           </DialogContent>
         </Dialog>
       </div>
       {onCheck && (
-        <button 
+        <button
           onClick={(e) => {
             e.stopPropagation();
             onCheck();
