@@ -11,16 +11,15 @@ const Index = () => {
   const [availableCrosswords, setAvailableCrosswords] = useState<
     { name: string; path: string }[]
   >([
-    { name: "Sample Crossword", path: "/crosswords/sample-crossword.json" },
-    { name: "Mini Crossword", path: "/crosswords/mini-crossword.json" },
-    { name: "Mock Crossword", path: "/crosswords/crossword.json" },
+    // { name: "Mini Crossword", path: "/crosswords/mini-crossword.json" },
+    { name: "Baoze Fun Lil Crossword", path: "/crosswords/baoze-bday-crossword.json" },
   ]);
 
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Load the default crossword when the component mounts
-    loadCrossword("/crosswords/crossword.json");
+    loadCrossword("/crosswords/baoze-bday-crossword.json");
   }, []);
 
   const loadCrossword = async (path: string) => {
