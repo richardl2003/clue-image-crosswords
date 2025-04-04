@@ -6,8 +6,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
 interface CrosswordSelectorProps {
@@ -43,9 +41,9 @@ const CrosswordSelector: React.FC<CrosswordSelectorProps> = ({
   };
 
   return (
-    <div className="flex flex-col space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-4 mb-8 max-w-xl mx-auto">
+    <div className="flex justify-center items-center mb-8">
       <Select value={selectedValue} onValueChange={handleChange}>
-        <SelectTrigger className="w-full md:w-[300px]">
+        <SelectTrigger className="w-[300px]">
           <SelectValue placeholder="Select a crossword" />
         </SelectTrigger>
         <SelectContent>
