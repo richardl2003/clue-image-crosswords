@@ -1,9 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import CrosswordPuzzle from '@/components/CrosswordPuzzle';
 import CrosswordSelector from '@/components/CrosswordSelector';
 import { CrosswordData } from '@/types/crossword';
-import { toast } from '@/components/ui/sonner';
+import { toast } from "sonner";
 
 const Index = () => {
   const [crosswordData, setCrosswordData] = useState<CrosswordData | null>(null);

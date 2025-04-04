@@ -1,10 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
 import CrosswordGrid from './CrosswordGrid';
 import CrosswordClue from './CrosswordClue';
 import { CrosswordData, CellData, Direction, CrosswordClue as CrosswordClueType } from '@/types/crossword';
 import { Button } from '@/components/ui/button';
-import { toast } from '@/components/ui/sonner';
+import { toast } from "sonner";
 
 interface CrosswordPuzzleProps {
   data: CrosswordData;
@@ -18,33 +17,26 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
   const [activeClue, setActiveClue] = useState<CrosswordClueType | null>(null);
   const [message, setMessage] = useState<{ text: string; type: 'success' | 'error' } | null>(null);
 
-  // Initialize the grid with the data
   useEffect(() => {
     if (!data || !data.grid) return;
     
     const initialGrid: CellData[][] = [];
     
-    // Create a number map to assign cell numbers
     const numberMap: { [key: string]: number } = {};
     let cellNumber = 1;
     
-    // First pass: determine cell numbers
     for (let r = 0; r < data.grid.length; r++) {
       for (let c = 0; c < data.grid[r].length; c++) {
         if (data.grid[r][c] !== null) {
           let shouldNumber = false;
           
-          // Check if this is the start of an across clue
           if (c === 0 || data.grid[r][c - 1] === null) {
-            // Check if there's at least one more cell to the right
             if (c + 1 < data.grid[r].length && data.grid[r][c + 1] !== null) {
               shouldNumber = true;
             }
           }
           
-          // Check if this is the start of a down clue
           if (r === 0 || data.grid[r - 1][c] === null) {
-            // Check if there's at least one more cell below
             if (r + 1 < data.grid.length && data.grid[r + 1][c] !== null) {
               shouldNumber = true;
             }
@@ -57,7 +49,6 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
       }
     }
     
-    // Second pass: build the grid
     for (let r = 0; r < data.grid.length; r++) {
       const row: CellData[] = [];
       for (let c = 0; c < data.grid[r].length; c++) {
@@ -75,14 +66,12 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
     
     setGrid(initialGrid);
     
-    // Set initial active cell
     for (let r = 0; r < initialGrid.length; r++) {
       for (let c = 0; c < initialGrid[r].length; c++) {
         if (!initialGrid[r][c].isBlack) {
           setActiveRow(r);
           setActiveCol(c);
           
-          // Find the active clue
           const acrossClue = data.clues.across.find(
             (clue) => clue.row === r && clue.col <= c && c < clue.col + clue.answer.length
           );
@@ -109,7 +98,6 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
     setActiveRow(row);
     setActiveCol(col);
     
-    // Find the active clue based on the current direction first
     let clue: CrosswordClueType | undefined;
     
     if (activeDirection === 'across') {
@@ -149,7 +137,6 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
     const newDirection = activeDirection === 'across' ? 'down' : 'across';
     setActiveDirection(newDirection);
     
-    // Find the new active clue
     const clues = newDirection === 'across' ? data.clues.across : data.clues.down;
     const clue = clues.find(
       (c) => 
