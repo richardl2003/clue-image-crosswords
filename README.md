@@ -1,73 +1,96 @@
-# Welcome to your Lovable project
+<div align="center">
+<h3 align="center">Clue Image Crosswords</h3>
 
-## Project info
+  <p align="center">
+    A New York Times-style crossword puzzle with image clues, built with React, TypeScript, and Tailwind CSS.
+  </p>
+</div>
 
-**URL**: https://lovable.dev/projects/dd134c88-c94d-4c22-94da-36a45326fdac
+## Table of Contents
 
-## How can I edit this code?
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#key-features">Key Features</a></li>
+      </ul>
+    </li>
+    <li><a href="#built-with">Built With</a></li>
+    <li><a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
 
-There are several ways of editing your application.
+## About The Project
 
-**Use Lovable**
+This project is a web application that allows users to play crossword puzzles where the clues are images instead of text. It is designed to mimic the style of the New York Times crossword puzzle, providing a familiar and engaging user experience. The application is built using React, TypeScript, and styled with Tailwind CSS and shadcn-ui components. It fetches crossword data from JSON files, allowing for easy creation and integration of new puzzles.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/dd134c88-c94d-4c22-94da-36a45326fdac) and start prompting.
+### Key Features
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Image Clues:** Crossword clues are represented by images, adding a visual and intuitive element to the puzzle-solving experience.
+- **NYT Style Grid:** The crossword grid is styled to resemble the classic New York Times crossword puzzle.
+- **Crossword Selection:** Users can select from a list of available crosswords or upload their own custom JSON crossword files.
+- **Interactive Grid:** The crossword grid is fully interactive, allowing users to input letters, navigate cells, and toggle between across and down directions.
+- **Clue Highlighting:** When a cell is selected, the corresponding clue is highlighted in the clue list.
+- **Answer Checking:** Users can check individual words or the entire puzzle for correctness, with visual feedback provided for correct and incorrect answers.
+- **Reveal Options:** Options to reveal a single letter or an entire word are available to assist users.
+- **Responsive Design:** The application is designed to be responsive and accessible on various devices.
+- **Dark Mode Support:** The application supports both light and dark modes, adapting to the user's preferred theme.
 
-**Use your preferred IDE**
+## Built With
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- [Vite](https://vitejs.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [React](https://react.dev/)
+- [shadcn-ui](https://ui.shadcn.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [@tanstack/react-query](https://tanstack.com/query/latest)
+- [react-router-dom](https://reactrouter.com/en/main)
+- [sonner](https://sonner.emilkowal.ski/)
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Getting Started
 
-Follow these steps:
+To run this project locally, follow these steps:
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Prerequisites
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- Node.js (version >=18) and npm installed. You can use [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) to manage Node.js versions.
 
-# Step 3: Install the necessary dependencies.
-npm i
+### Installation
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+1. Clone the repository:
 
-**Edit a file directly in GitHub**
+   ```sh
+   git clone https://github.com/richardl2003/clue-image-crosswords.git
+   ```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+2. Navigate to the project directory:
 
-**Use GitHub Codespaces**
+   ```sh
+   cd clue-image-crosswords
+   ```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+3. Install the dependencies:
 
-## What technologies are used for this project?
+   ```sh
+   npm install
+   ```
 
-This project is built with:
+4. Start the development server:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+   ```sh
+   npm run dev
+   ```
 
-## How can I deploy this project?
+   This will start the development server with hot-reloading. Open your browser and navigate to `http://localhost:8080` to view the application.
 
-Simply open [Lovable](https://lovable.dev/projects/dd134c88-c94d-4c22-94da-36a45326fdac) and click on Share -> Publish.
+## Acknowledgments
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes it is!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+- This README was created using [gitreadme.dev](https://gitreadme.dev) — an AI tool that looks at your entire codebase to instantly generate high-quality README files.

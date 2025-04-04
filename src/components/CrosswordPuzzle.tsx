@@ -401,8 +401,8 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
         By {data.author} | {data.date}
       </p>
 
-      <div className="flex flex-col items-center gap-8">
-        <div className="flex flex-col items-center">
+      <div className="crossword-content">
+        <div className="crossword-grid-section">
           <CrosswordGrid
             grid={grid}
             activeRow={activeRow}
