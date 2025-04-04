@@ -10,6 +10,7 @@ interface CrosswordCellProps {
   isHighlighted: boolean;
   isHighlightedClue: boolean;
   isFocused: boolean;
+  isIncorrect?: boolean;
   onFocus: () => void;
   onKeyDown: (e: React.KeyboardEvent) => void;
 }
@@ -22,6 +23,7 @@ const CrosswordCell: React.FC<CrosswordCellProps> = ({
   isHighlighted,
   isHighlightedClue,
   isFocused,
+  isIncorrect,
   onFocus,
   onKeyDown,
 }) => {
@@ -42,7 +44,8 @@ const CrosswordCell: React.FC<CrosswordCellProps> = ({
       className={cn(
         'crossword-cell',
         isHighlighted && 'highlighted',
-        isHighlightedClue && 'highlighted-clue'
+        isHighlightedClue && 'highlighted-clue',
+        isIncorrect && 'incorrect'
       )}
       onClick={onFocus}
     >
@@ -53,7 +56,7 @@ const CrosswordCell: React.FC<CrosswordCellProps> = ({
         maxLength={1}
         value={value || ''}
         onChange={(e) => onChange(e.target.value.toUpperCase())}
-        className="crossword-cell-input"
+        className={cn("crossword-cell-input", isIncorrect && "text-red-600")}
         onFocus={onFocus}
         onKeyDown={onKeyDown}
       />

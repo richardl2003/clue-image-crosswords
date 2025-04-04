@@ -18,6 +18,7 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
   const [activeClue, setActiveClue] = useState<CrosswordClueType | null>(null);
   const [message, setMessage] = useState<{ text: string; type: 'success' | 'error' } | null>(null);
   const [clueStatuses, setClueStatuses] = useState<{[key: string]: boolean | null}>({});
+  const [incorrectCells, setIncorrectCells] = useState<{[key: string]: boolean}>({});
 
   useEffect(() => {
     if (!data || !data.grid) return;
@@ -140,6 +141,12 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
         ...prev,
         [clueKey]: null
       }));
+
+      setIncorrectCells(prev => {
+        const newIncorrect = { ...prev };
+        delete newIncorrect[`${row}-${col}`];
+        return newIncorrect;
+      });
     }
   };
 
@@ -165,20 +172,25 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
   };
 
   const checkClue = (clue: CrosswordClueType, direction: Direction) => {
-    if (!data || !data.grid) return;
+    if (!data || !data.grid) return false;
     
     let isCorrect = true;
+    const newIncorrectCells: {[key: string]: boolean} = {};
     
     if (direction === 'across') {
       for (let c = 0; c < clue.answer.length; c++) {
         const col = clue.col + c;
         if (
           col < data.grid[clue.row].length &&
-          data.grid[clue.row][col] !== null &&
-          grid[clue.row][col].value !== data.grid[clue.row][col]
+          data.grid[clue.row][col] !== null
         ) {
-          isCorrect = false;
-          break;
+          const cellValue = grid[clue.row][col].value;
+          const expectedValue = data.grid[clue.row][col] as string;
+          
+          if (cellValue !== expectedValue) {
+            isCorrect = false;
+            newIncorrectCells[`${clue.row}-${col}`] = true;
+          }
         }
       }
     } else {
@@ -186,11 +198,15 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
         const row = clue.row + r;
         if (
           row < data.grid.length &&
-          data.grid[row][clue.col] !== null &&
-          grid[row][clue.col].value !== data.grid[row][clue.col]
+          data.grid[row][clue.col] !== null
         ) {
-          isCorrect = false;
-          break;
+          const cellValue = grid[row][clue.col].value;
+          const expectedValue = data.grid[row][clue.col] as string;
+          
+          if (cellValue !== expectedValue) {
+            isCorrect = false;
+            newIncorrectCells[`${row}-${clue.col}`] = true;
+          }
         }
       }
     }
@@ -199,6 +215,11 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
     setClueStatuses(prev => ({
       ...prev,
       [clueKey]: isCorrect
+    }));
+    
+    setIncorrectCells(prev => ({
+      ...prev,
+      ...newIncorrectCells
     }));
     
     if (isCorrect) {
@@ -221,22 +242,52 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
     
     let isCorrect = true;
     const newStatuses: {[key: string]: boolean} = {};
+    const newIncorrectCells: {[key: string]: boolean} = {};
     
     data.clues.across.forEach(clue => {
-      const clueIsCorrect = checkClue(clue, 'across');
+      for (let c = 0; c < clue.answer.length; c++) {
+        const col = clue.col + c;
+        if (
+          col < data.grid[clue.row].length &&
+          data.grid[clue.row][col] !== null
+        ) {
+          const cellValue = grid[clue.row][col].value;
+          const expectedValue = data.grid[clue.row][col] as string;
+          
+          if (cellValue !== expectedValue) {
+            isCorrect = false;
+            newIncorrectCells[`${clue.row}-${col}`] = true;
+          }
+        }
+      }
+      
       const clueKey = `across-${clue.number}`;
-      newStatuses[clueKey] = clueIsCorrect;
-      if (!clueIsCorrect) isCorrect = false;
+      newStatuses[clueKey] = !newIncorrectCells[`${clue.row}-${clue.col}`];
     });
     
     data.clues.down.forEach(clue => {
-      const clueIsCorrect = checkClue(clue, 'down');
+      for (let r = 0; r < clue.answer.length; r++) {
+        const row = clue.row + r;
+        if (
+          row < data.grid.length &&
+          data.grid[row][clue.col] !== null
+        ) {
+          const cellValue = grid[row][clue.col].value;
+          const expectedValue = data.grid[row][clue.col] as string;
+          
+          if (cellValue !== expectedValue) {
+            isCorrect = false;
+            newIncorrectCells[`${row}-${clue.col}`] = true;
+          }
+        }
+      }
+      
       const clueKey = `down-${clue.number}`;
-      newStatuses[clueKey] = clueIsCorrect;
-      if (!clueIsCorrect) isCorrect = false;
+      newStatuses[clueKey] = !newIncorrectCells[`${clue.row}-${clue.col}`];
     });
     
     setClueStatuses(newStatuses);
+    setIncorrectCells(newIncorrectCells);
     
     if (isCorrect) {
       setMessage({ text: "Congratulations! All answers are correct!", type: 'success' });
@@ -289,6 +340,7 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
     setGrid(newGrid);
     setMessage(null);
     setClueStatuses({});
+    setIncorrectCells({});
   };
 
   return (
@@ -304,6 +356,7 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
             activeCol={activeCol}
             activeDirection={activeDirection}
             activeClue={activeClue}
+            incorrectCells={incorrectCells}
             onCellFocus={handleCellFocus}
             onCellChange={handleCellChange}
             onDirectionChange={handleDirectionChange}

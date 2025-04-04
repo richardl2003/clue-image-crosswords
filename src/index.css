@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -143,6 +144,10 @@
 
 .crossword-cell.highlighted-clue {
   @apply bg-[hsl(var(--crossword-highlight-clue))];
+}
+
+.crossword-cell.incorrect {
+  @apply bg-red-100 dark:bg-red-900/30;
 }
 
 .crossword-cell-number {

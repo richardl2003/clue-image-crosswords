@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import CrosswordCell from './CrosswordCell';
 import { CellData, Direction, CrosswordClue } from '@/types/crossword';
@@ -8,6 +9,7 @@ interface CrosswordGridProps {
   activeCol: number;
   activeDirection: Direction;
   activeClue: CrosswordClue | null;
+  incorrectCells: { [key: string]: boolean };
   onCellFocus: (row: number, col: number) => void;
   onCellChange: (row: number, col: number, value: string) => void;
   onDirectionChange: () => void;
@@ -19,6 +21,7 @@ const CrosswordGrid: React.FC<CrosswordGridProps> = ({
   activeCol,
   activeDirection,
   activeClue,
+  incorrectCells,
   onCellFocus,
   onCellChange,
   onDirectionChange,
@@ -155,6 +158,7 @@ const CrosswordGrid: React.FC<CrosswordGridProps> = ({
             number={cell.number}
             isHighlighted={isHighlighted(rowIndex, colIndex)}
             isHighlightedClue={isHighlightedClue(rowIndex, colIndex)}
+            isIncorrect={incorrectCells[`${rowIndex}-${colIndex}`]}
             isFocused={
               focusedCell?.row === rowIndex && focusedCell?.col === colIndex
             }
