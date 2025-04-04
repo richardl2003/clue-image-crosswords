@@ -1,4 +1,3 @@
-
 {
   "title": "Mini Crossword Puzzle",
   "author": "Lovable Games",
@@ -24,14 +23,14 @@
         "col": 0
       },
       {
-        "number": 5,
+        "number": 2,
         "clue": "photo-1470813740244-df37b8c1edcb",
         "answer": "RED",
         "row": 1,
         "col": 2
       },
       {
-        "number": 8,
+        "number": 3,
         "clue": "photo-1466442929976-97f336a657be",
         "answer": "SUN",
         "row": 4,
@@ -47,14 +46,14 @@
         "col": 0
       },
       {
-        "number": 2,
+        "number": 5,
         "clue": "photo-1470813740244-df37b8c1edcb",
         "answer": "TREES",
         "row": 0,
         "col": 2
       },
       {
-        "number": 3,
+        "number": 7,
         "clue": "photo-1461749280684-dccba630e2f6",
         "answer": "DEAN",
         "row": 1,

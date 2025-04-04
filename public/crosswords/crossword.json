@@ -1,0 +1,207 @@
+{
+  "title": "Name Crossword Puzzle",
+  "author": "Crossword Creator",
+  "date": "2024",
+  "size": {
+    "rows": 15,
+    "cols": 13
+  },
+  "grid": [
+    [null, null, "S", null, null, "F", null, "K", "Y", "L", "E", "M", null],
+    [null, null, "E", null, null, "A", null, "I", null, null, "L", null, null],
+    [null, null, "A", null, null, "I", null, "R", null, null, "O", null, null],
+    ["A", "Y", "E", "S", "H", "A", null, "S", "A", "N", "D", "R", "A"],
+    [null, null, "A", null, "U", null, null, "T", null, null, "Y", null, "L"],
+    [null, null, null, "B", "A", "O", "Z", "E", null, null, null, null, "E"],
+    [null, null, null, "I", null, null, "A", "N", "N", null, null, null, "X"],
+    ["A", "R", "J", "U", "N", null, "R", null, null, "D", null, null, "I"],
+    [null, "I", null, null, null, "L", "E", "A", "N", "N", "E", null, "S"],
+    [
+      null,
+      "C",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      "R",
+      null,
+      null
+    ],
+    [null, "H", "A", "D", "Y", null, "C", "L", "A", "R", "A", null, null],
+    [
+      null,
+      "A",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      "O",
+      null,
+      null
+    ],
+    ["U", "R", "S", "U", "L", "A", null, "D", "A", "N", "I", "E", "L"],
+    [
+      null,
+      "D",
+      null,
+      null,
+      null,
+      null,
+      null,
+      "O",
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      "M",
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  ],
+  "clues": {
+    "across": [
+      {
+        "number": 1,
+        "clue": "Name clue",
+        "answer": "KYLE",
+        "row": 0,
+        "col": 7
+      },
+      {
+        "number": 2,
+        "clue": "Name clue",
+        "answer": "AYESHA",
+        "row": 3,
+        "col": 0
+      },
+      {
+        "number": 3,
+        "clue": "Name clue",
+        "answer": "SANDRA",
+        "row": 3,
+        "col": 7
+      },
+      {
+        "number": 4,
+        "clue": "Name clue",
+        "answer": "BAOZE",
+        "row": 5,
+        "col": 3
+      },
+      {
+        "number": 5,
+        "clue": "Name clue",
+        "answer": "ANN",
+        "row": 6,
+        "col": 6
+      },
+      {
+        "number": 6,
+        "clue": "Name clue",
+        "answer": "ARJUN",
+        "row": 7,
+        "col": 0
+      },
+      {
+        "number": 7,
+        "clue": "Name clue",
+        "answer": "LEANNE",
+        "row": 8,
+        "col": 5
+      },
+      {
+        "number": 8,
+        "clue": "Name clue",
+        "answer": "HADY",
+        "row": 10,
+        "col": 1
+      },
+      {
+        "number": 9,
+        "clue": "Name clue",
+        "answer": "CLARA",
+        "row": 10,
+        "col": 6
+      },
+      {
+        "number": 10,
+        "clue": "Name clue",
+        "answer": "URSULA",
+        "row": 12,
+        "col": 0
+      },
+      {
+        "number": 11,
+        "clue": "Name clue",
+        "answer": "DANIEL",
+        "row": 12,
+        "col": 7
+      }
+    ],
+    "down": [
+      {
+        "number": 1,
+        "clue": "Name clue",
+        "answer": "SEA",
+        "row": 0,
+        "col": 2
+      },
+      {
+        "number": 2,
+        "clue": "Name clue",
+        "answer": "FAITH",
+        "row": 0,
+        "col": 5
+      },
+      {
+        "number": 3,
+        "clue": "Name clue",
+        "answer": "KIRST",
+        "row": 0,
+        "col": 7
+      },
+      {
+        "number": 4,
+        "clue": "Name clue",
+        "answer": "ELODY",
+        "row": 0,
+        "col": 10
+      },
+      {
+        "number": 5,
+        "clue": "Name clue",
+        "answer": "MELEXIS",
+        "row": 0,
+        "col": 11
+      },
+      {
+        "number": 6,
+        "clue": "Name clue",
+        "answer": "RICHARD",
+        "row": 4,
+        "col": 1
+      }
+    ]
+  }
+}

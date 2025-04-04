@@ -1,6 +1,5 @@
-
-import React, { useRef, useEffect } from 'react';
-import { cn } from '@/lib/utils';
+import React, { useRef, useEffect } from "react";
+import { cn } from "@/lib/utils";
 
 interface CrosswordCellProps {
   value: string;
@@ -13,6 +12,7 @@ interface CrosswordCellProps {
   isIncorrect?: boolean;
   onFocus: () => void;
   onKeyDown: (e: React.KeyboardEvent) => void;
+  onDoubleClick: () => void;
 }
 
 const CrosswordCell: React.FC<CrosswordCellProps> = ({
@@ -26,6 +26,7 @@ const CrosswordCell: React.FC<CrosswordCellProps> = ({
   isIncorrect,
   onFocus,
   onKeyDown,
+  onDoubleClick,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -42,19 +43,20 @@ const CrosswordCell: React.FC<CrosswordCellProps> = ({
   return (
     <div
       className={cn(
-        'crossword-cell',
-        isHighlighted && 'highlighted',
-        isHighlightedClue && 'highlighted-clue',
-        isIncorrect && 'incorrect'
+        "crossword-cell",
+        isHighlighted && "highlighted",
+        isHighlightedClue && "highlighted-clue",
+        isIncorrect && "incorrect"
       )}
       onClick={onFocus}
+      onDoubleClick={onDoubleClick}
     >
       {number !== null && <div className="crossword-cell-number">{number}</div>}
       <input
         ref={inputRef}
         type="text"
         maxLength={1}
-        value={value || ''}
+        value={value || ""}
         onChange={(e) => onChange(e.target.value.toUpperCase())}
         className={cn("crossword-cell-input", isIncorrect && "text-red-600")}
         onFocus={onFocus}
