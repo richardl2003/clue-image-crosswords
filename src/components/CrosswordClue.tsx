@@ -2,12 +2,15 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { CheckIcon } from 'lucide-react';
 
 interface CrosswordClueProps {
   number: number;
   imageUrl: string;
   isActive: boolean;
   onClick: () => void;
+  onCheck?: () => void;
+  isCorrect?: boolean | null;
 }
 
 const CrosswordClue: React.FC<CrosswordClueProps> = ({
@@ -15,10 +18,17 @@ const CrosswordClue: React.FC<CrosswordClueProps> = ({
   imageUrl,
   isActive,
   onClick,
+  onCheck,
+  isCorrect,
 }) => {
   return (
     <div 
-      className={cn('crossword-clue-item', isActive && 'active')} 
+      className={cn(
+        'crossword-clue-item group',
+        isActive && 'active',
+        isCorrect === true && 'correct',
+        isCorrect === false && 'incorrect'
+      )} 
       onClick={onClick}
     >
       <div className="crossword-clue-number">{number}.</div>
@@ -40,6 +50,18 @@ const CrosswordClue: React.FC<CrosswordClueProps> = ({
           </DialogContent>
         </Dialog>
       </div>
+      {onCheck && (
+        <button 
+          onClick={(e) => {
+            e.stopPropagation();
+            onCheck();
+          }}
+          className="crossword-check-button"
+          aria-label="Check clue"
+        >
+          <CheckIcon size={16} />
+        </button>
+      )}
     </div>
   );
 };

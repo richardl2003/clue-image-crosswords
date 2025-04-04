@@ -1,10 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import CrosswordGrid from './CrosswordGrid';
 import CrosswordClue from './CrosswordClue';
 import { CrosswordData, CellData, Direction, CrosswordClue as CrosswordClueType } from '@/types/crossword';
 import { Button } from '@/components/ui/button';
 import { toast } from "sonner";
+import { CheckIcon } from 'lucide-react';
 
 interface CrosswordPuzzleProps {
   data: CrosswordData;
@@ -17,6 +17,7 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
   const [activeDirection, setActiveDirection] = useState<Direction>('across');
   const [activeClue, setActiveClue] = useState<CrosswordClueType | null>(null);
   const [message, setMessage] = useState<{ text: string; type: 'success' | 'error' } | null>(null);
+  const [clueStatuses, setClueStatuses] = useState<{[key: string]: boolean | null}>({});
 
   useEffect(() => {
     if (!data || !data.grid) return;
@@ -132,6 +133,14 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
     const newGrid = [...grid];
     newGrid[row][col].value = value;
     setGrid(newGrid);
+    
+    if (activeClue) {
+      const clueKey = `${activeDirection}-${activeClue.number}`;
+      setClueStatuses(prev => ({
+        ...prev,
+        [clueKey]: null
+      }));
+    }
   };
 
   const handleDirectionChange = () => {
@@ -155,23 +164,79 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
     setActiveCol(clue.col);
   };
 
-  const checkAnswers = () => {
+  const checkClue = (clue: CrosswordClueType, direction: Direction) => {
     if (!data || !data.grid) return;
     
     let isCorrect = true;
-    const newGrid = [...grid];
     
-    for (let r = 0; r < data.grid.length; r++) {
-      for (let c = 0; c < data.grid[r].length; c++) {
-        if (data.grid[r][c] !== null && 
-            (newGrid[r][c].value === '' || 
-             newGrid[r][c].value !== data.grid[r][c])) {
+    if (direction === 'across') {
+      for (let c = 0; c < clue.answer.length; c++) {
+        const col = clue.col + c;
+        if (
+          col < data.grid[clue.row].length &&
+          data.grid[clue.row][col] !== null &&
+          grid[clue.row][col].value !== data.grid[clue.row][col]
+        ) {
           isCorrect = false;
           break;
         }
       }
-      if (!isCorrect) break;
+    } else {
+      for (let r = 0; r < clue.answer.length; r++) {
+        const row = clue.row + r;
+        if (
+          row < data.grid.length &&
+          data.grid[row][clue.col] !== null &&
+          grid[row][clue.col].value !== data.grid[row][clue.col]
+        ) {
+          isCorrect = false;
+          break;
+        }
+      }
     }
+    
+    const clueKey = `${direction}-${clue.number}`;
+    setClueStatuses(prev => ({
+      ...prev,
+      [clueKey]: isCorrect
+    }));
+    
+    if (isCorrect) {
+      toast.success(`Clue ${clue.number} ${direction} is correct!`);
+    } else {
+      toast.error(`Clue ${clue.number} ${direction} is incorrect. Keep trying!`);
+    }
+    
+    return isCorrect;
+  };
+
+  const checkCurrentClue = () => {
+    if (activeClue) {
+      checkClue(activeClue, activeDirection);
+    }
+  };
+
+  const checkAnswers = () => {
+    if (!data || !data.grid) return;
+    
+    let isCorrect = true;
+    const newStatuses: {[key: string]: boolean} = {};
+    
+    data.clues.across.forEach(clue => {
+      const clueIsCorrect = checkClue(clue, 'across');
+      const clueKey = `across-${clue.number}`;
+      newStatuses[clueKey] = clueIsCorrect;
+      if (!clueIsCorrect) isCorrect = false;
+    });
+    
+    data.clues.down.forEach(clue => {
+      const clueIsCorrect = checkClue(clue, 'down');
+      const clueKey = `down-${clue.number}`;
+      newStatuses[clueKey] = clueIsCorrect;
+      if (!clueIsCorrect) isCorrect = false;
+    });
+    
+    setClueStatuses(newStatuses);
     
     if (isCorrect) {
       setMessage({ text: "Congratulations! All answers are correct!", type: 'success' });
@@ -223,6 +288,7 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
     );
     setGrid(newGrid);
     setMessage(null);
+    setClueStatuses({});
   };
 
   return (
@@ -230,7 +296,7 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
       <h1 className="crossword-title">{data.title}</h1>
       <p className="crossword-subtitle">By {data.author} | {data.date}</p>
       
-      <div className="flex flex-col md:flex-row items-start gap-6">
+      <div className="flex flex-col lg:flex-row items-start gap-6">
         <div className="flex flex-col items-center">
           <CrosswordGrid
             grid={grid}
@@ -244,7 +310,19 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
           />
           
           <div className="crossword-controls">
-            <Button onClick={checkAnswers} variant="default" className="crossword-button">Check</Button>
+            <Button 
+              onClick={checkCurrentClue} 
+              variant="outline" 
+              className="crossword-button"
+              disabled={!activeClue}
+            >
+              <CheckIcon size={16} />
+              Check Word
+            </Button>
+            <Button onClick={checkAnswers} variant="default" className="crossword-button">
+              <CheckIcon size={16} />
+              Check All
+            </Button>
             <Button onClick={revealLetter} variant="outline" className="crossword-button">Reveal Letter</Button>
             <Button onClick={revealWord} variant="outline" className="crossword-button">Reveal Word</Button>
             <Button onClick={resetPuzzle} variant="destructive" className="crossword-button">Reset</Button>
@@ -257,40 +335,50 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
           )}
         </div>
         
-        <div className="crossword-clues-container w-full md:w-auto md:flex-shrink-0">
+        <div className="crossword-clues-container w-full lg:w-auto">
           <div className="crossword-clue-section">
             <h2 className="crossword-clue-title">Across</h2>
             <div className="crossword-clue-list">
-              {data.clues.across.map((clue) => (
-                <CrosswordClue
-                  key={`across-${clue.number}`}
-                  number={clue.number}
-                  imageUrl={clue.clue}
-                  isActive={
-                    activeClue?.number === clue.number && 
-                    activeDirection === 'across'
-                  }
-                  onClick={() => handleClueClick(clue, 'across')}
-                />
-              ))}
+              {data.clues.across.map((clue) => {
+                const clueKey = `across-${clue.number}`;
+                return (
+                  <CrosswordClue
+                    key={clueKey}
+                    number={clue.number}
+                    imageUrl={clue.clue}
+                    isActive={
+                      activeClue?.number === clue.number && 
+                      activeDirection === 'across'
+                    }
+                    isCorrect={clueStatuses[clueKey]}
+                    onClick={() => handleClueClick(clue, 'across')}
+                    onCheck={() => checkClue(clue, 'across')}
+                  />
+                );
+              })}
             </div>
           </div>
           
           <div className="crossword-clue-section">
             <h2 className="crossword-clue-title">Down</h2>
             <div className="crossword-clue-list">
-              {data.clues.down.map((clue) => (
-                <CrosswordClue
-                  key={`down-${clue.number}`}
-                  number={clue.number}
-                  imageUrl={clue.clue}
-                  isActive={
-                    activeClue?.number === clue.number && 
-                    activeDirection === 'down'
-                  }
-                  onClick={() => handleClueClick(clue, 'down')}
-                />
-              ))}
+              {data.clues.down.map((clue) => {
+                const clueKey = `down-${clue.number}`;
+                return (
+                  <CrosswordClue
+                    key={clueKey}
+                    number={clue.number}
+                    imageUrl={clue.clue}
+                    isActive={
+                      activeClue?.number === clue.number && 
+                      activeDirection === 'down'
+                    }
+                    isCorrect={clueStatuses[clueKey]}
+                    onClick={() => handleClueClick(clue, 'down')}
+                    onCheck={() => checkClue(clue, 'down')}
+                  />
+                );
+              })}
             </div>
           </div>
         </div>
