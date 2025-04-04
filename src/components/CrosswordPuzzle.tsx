@@ -190,6 +190,7 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
     if (!data || !data.grid) return false;
 
     let isCorrect = true;
+    let isFilled = true;
     const newIncorrectCells: { [key: string]: boolean } = {};
 
     if (direction === "across") {
@@ -201,8 +202,12 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
         ) {
           const cellValue = grid[clue.row][col].value;
           const expectedValue = data.grid[clue.row][col] as string;
-
-          if (cellValue !== expectedValue) {
+          
+          if (cellValue == "") {
+            isCorrect = false;
+            isFilled = false;
+          }
+          if (cellValue !== expectedValue && cellValue != "") {
             isCorrect = false;
             newIncorrectCells[`${clue.row}-${col}`] = true;
           }
@@ -214,8 +219,11 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
         if (row < data.grid.length && data.grid[row][clue.col] !== null) {
           const cellValue = grid[row][clue.col].value;
           const expectedValue = data.grid[row][clue.col] as string;
-
-          if (cellValue !== expectedValue) {
+          if (cellValue == "") {
+            isCorrect = false;
+            isFilled = false;
+          }
+          if (cellValue !== expectedValue && cellValue != "") {
             isCorrect = false;
             newIncorrectCells[`${row}-${clue.col}`] = true;
           }
@@ -226,7 +234,7 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
     const clueKey = `${direction}-${clue.number}`;
     setClueStatuses((prev) => ({
       ...prev,
-      [clueKey]: isCorrect,
+      [clueKey]: isFilled ? isCorrect : null,
     }));
 
     setIncorrectCells((prev) => ({
@@ -253,12 +261,15 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
 
   const checkAnswers = () => {
     if (!data || !data.grid) return;
-
+    console.log(clueStatuses)
+    
     let isCorrect = true;
-    const newStatuses: { [key: string]: boolean } = {};
-    const newIncorrectCells: { [key: string]: boolean } = {};
-
-    data.clues.across.forEach((clue) => {
+    const newStatuses: {[key: string]: boolean} = {};
+    const newIncorrectCells: {[key: string]: boolean} = {};
+    
+    data.clues.across.forEach(clue => {
+      var isCorrectWord = true;
+      var isFilled = true;
       for (let c = 0; c < clue.answer.length; c++) {
         const col = clue.col + c;
         if (
@@ -267,36 +278,54 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
         ) {
           const cellValue = grid[clue.row][col].value;
           const expectedValue = data.grid[clue.row][col] as string;
-
-          if (cellValue !== expectedValue) {
+          
+          if (cellValue == "") {
             isCorrect = false;
+            isCorrectWord = false;
+            isFilled = false;
+          }
+          if (cellValue !== expectedValue && cellValue != "") {
+            isCorrect = false;
+            isCorrectWord = false;
             newIncorrectCells[`${clue.row}-${col}`] = true;
           }
         }
       }
 
       const clueKey = `across-${clue.number}`;
-      newStatuses[clueKey] = !newIncorrectCells[`${clue.row}-${clue.col}`];
+      newStatuses[clueKey] = isFilled
+        ? isCorrectWord
+        : null;
     });
-
-    data.clues.down.forEach((clue) => {
+    
+    data.clues.down.forEach(clue => {
+      var isCorrectWord = true;
+      var isFilled = true;
       for (let r = 0; r < clue.answer.length; r++) {
         const row = clue.row + r;
         if (row < data.grid.length && data.grid[row][clue.col] !== null) {
           const cellValue = grid[row][clue.col].value;
           const expectedValue = data.grid[row][clue.col] as string;
-
-          if (cellValue !== expectedValue) {
+          
+          if (cellValue == "") {
             isCorrect = false;
+            isCorrectWord = false;
+            isFilled = false;
+          }
+          if (cellValue !== expectedValue && cellValue != "") {
+            isCorrect = false;
+            isCorrectWord = false;
             newIncorrectCells[`${row}-${clue.col}`] = true;
           }
         }
       }
 
       const clueKey = `down-${clue.number}`;
-      newStatuses[clueKey] = !newIncorrectCells[`${clue.row}-${clue.col}`];
+      newStatuses[clueKey] = isFilled
+        ? isCorrectWord
+        : null;
     });
-
+    
     setClueStatuses(newStatuses);
     setIncorrectCells(newIncorrectCells);
 
