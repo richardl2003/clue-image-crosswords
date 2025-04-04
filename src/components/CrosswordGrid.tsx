@@ -26,6 +26,11 @@ const CrosswordGrid: React.FC<CrosswordGridProps> = ({
 }) => {
   const [focusedCell, setFocusedCell] = useState<{ row: number; col: number } | null>(null);
 
+  // Safety check for empty grid
+  if (!grid || grid.length === 0 || !grid[0]) {
+    return <div className="p-4 text-center">Loading crossword puzzle...</div>;
+  }
+
   useEffect(() => {
     setFocusedCell({ row: activeRow, col: activeCol });
   }, [activeRow, activeCol]);
@@ -128,14 +133,19 @@ const CrosswordGrid: React.FC<CrosswordGridProps> = ({
            (activeDirection === 'down' && col === activeCol);
   };
 
+  // Get grid dimensions safely
+  const rows = grid.length;
+  const cols = grid[0] ? grid[0].length : 0;
+
   return (
     <div 
       className="crossword-grid" 
       style={{ 
-        gridTemplateRows: `repeat(${grid.length}, 1fr)`, 
-        gridTemplateColumns: `repeat(${grid[0].length}, 1fr)`,
+        display: 'grid',
+        gridTemplateRows: `repeat(${rows}, 1fr)`, 
+        gridTemplateColumns: `repeat(${cols}, 1fr)`,
         width: '100%',
-        maxWidth: `${grid[0].length * 40}px`,
+        maxWidth: `${cols * 40}px`,
       }}
     >
       {grid.map((row, rowIndex) =>
