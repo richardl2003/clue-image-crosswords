@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 @layer base {
+  html,
+  body {
+    @apply h-full;
+    overscroll-behavior-y: none;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+  }
+
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
