@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import CrosswordGrid from './CrosswordGrid';
 import CrosswordClue from './CrosswordClue';
@@ -229,32 +230,34 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
       <h1 className="crossword-title">{data.title}</h1>
       <p className="crossword-subtitle">By {data.author} | {data.date}</p>
       
-      <div className="flex flex-col items-center">
-        <CrosswordGrid
-          grid={grid}
-          activeRow={activeRow}
-          activeCol={activeCol}
-          activeDirection={activeDirection}
-          activeClue={activeClue}
-          onCellFocus={handleCellFocus}
-          onCellChange={handleCellChange}
-          onDirectionChange={handleDirectionChange}
-        />
-        
-        <div className="crossword-controls">
-          <Button onClick={checkAnswers} variant="default" className="crossword-button">Check</Button>
-          <Button onClick={revealLetter} variant="outline" className="crossword-button">Reveal Letter</Button>
-          <Button onClick={revealWord} variant="outline" className="crossword-button">Reveal Word</Button>
-          <Button onClick={resetPuzzle} variant="destructive" className="crossword-button">Reset</Button>
+      <div className="flex flex-col md:flex-row items-start gap-6">
+        <div className="flex flex-col items-center">
+          <CrosswordGrid
+            grid={grid}
+            activeRow={activeRow}
+            activeCol={activeCol}
+            activeDirection={activeDirection}
+            activeClue={activeClue}
+            onCellFocus={handleCellFocus}
+            onCellChange={handleCellChange}
+            onDirectionChange={handleDirectionChange}
+          />
+          
+          <div className="crossword-controls">
+            <Button onClick={checkAnswers} variant="default" className="crossword-button">Check</Button>
+            <Button onClick={revealLetter} variant="outline" className="crossword-button">Reveal Letter</Button>
+            <Button onClick={revealWord} variant="outline" className="crossword-button">Reveal Word</Button>
+            <Button onClick={resetPuzzle} variant="destructive" className="crossword-button">Reset</Button>
+          </div>
+          
+          {message && (
+            <div className={`crossword-message ${message.type}`}>
+              {message.text}
+            </div>
+          )}
         </div>
         
-        {message && (
-          <div className={`crossword-message ${message.type}`}>
-            {message.text}
-          </div>
-        )}
-        
-        <div className="crossword-clues-container">
+        <div className="crossword-clues-container w-full md:w-auto md:flex-shrink-0">
           <div className="crossword-clue-section">
             <h2 className="crossword-clue-title">Across</h2>
             <div className="crossword-clue-list">
@@ -291,6 +294,45 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="mt-12 max-w-2xl mx-auto px-4 text-center text-muted-foreground">
+        <h3 className="text-lg font-medium mb-4">How to Create Custom Puzzles</h3>
+        <p className="mb-2">
+          To create your own crossword puzzle, prepare a JSON file with the following structure:
+        </p>
+        <pre className="text-left p-4 bg-secondary rounded-md overflow-auto text-sm mb-6">
+{`{
+  "title": "Your Puzzle Title",
+  "author": "Your Name",
+  "date": "Date Created",
+  "size": { "rows": 5, "cols": 5 },
+  "grid": [
+    ["C", "A", "T", null, "D"],
+    ["O", null, "R", "E", "A"],
+    [null, null, null, null, null],
+    // Additional rows...
+  ],
+  "clues": {
+    "across": [
+      {
+        "number": 1,
+        "clue": "photo-filename",
+        "answer": "CAT",
+        "row": 0,
+        "col": 0
+      }
+      // Additional across clues...
+    ],
+    "down": [
+      // Down clues...
+    ]
+  }
+}`}
+        </pre>
+        <p>
+          Use null for black squares. For image clues, use Unsplash image IDs (like "photo-1234567890").
+        </p>
       </div>
     </div>
   );
