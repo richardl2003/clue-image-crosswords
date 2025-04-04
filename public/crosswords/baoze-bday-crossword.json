@@ -69,7 +69,7 @@
       null,
       "O",
       null,
-      null
+      "P"
     ],
     [null, "A", "Y", "E", "S", "H", "A", null, "S", "A", "N", "D", "R", "A"],
     [
@@ -86,7 +86,7 @@
       null,
       "Y",
       null,
-      "L"
+      "R"
     ],
     [
       null,
@@ -102,7 +102,7 @@
       null,
       null,
       null,
-      "E"
+      "I"
     ],
     [
       null,
@@ -118,7 +118,7 @@
       null,
       null,
       null,
-      "X"
+      "A"
     ],
     [
       "A",
@@ -134,7 +134,7 @@
       "D",
       null,
       null,
-      "I"
+      null
     ],
     [
       null,
@@ -150,7 +150,7 @@
       "E",
       null,
       null,
-      "S"
+      null
     ],
     [
       null,
@@ -223,7 +223,7 @@
     "across": [
       {
         "number": 1,
-        "clue": "kyle.jpg",
+        "clue": "kyle.png",
         "answer": "KYLE",
         "row": 1,
         "col": 8
@@ -265,7 +265,7 @@
       },
       {
         "number": 7,
-        "clue": "leanne.png",
+        "clue": "leanne.jpg",
         "answer": "LEANNE",
         "row": 9,
         "col": 5
@@ -337,9 +337,9 @@
       },
       {
         "number": 6,
-        "clue": "alexis.png",
-        "answer": "ALEXIS",
-        "row": 4,
+        "clue": "paria.png",
+        "answer": "PARIA",
+        "row": 3,
         "col": 13
       },
       {
@@ -364,7 +364,7 @@
         "col": 10
       },
       {
-        "number": 10,
+        "number": 11,
         "clue": "dom.png",
         "answer": "DOM",
         "row": 13,

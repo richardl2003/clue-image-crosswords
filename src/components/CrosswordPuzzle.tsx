@@ -8,6 +8,7 @@ import {
   CrosswordClue as CrosswordClueType,
 } from "@/types/crossword";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { CheckIcon } from "lucide-react";
 
@@ -21,6 +22,7 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
   const [activeCol, setActiveCol] = useState<number>(0);
   const [activeDirection, setActiveDirection] = useState<Direction>("across");
   const [activeClue, setActiveClue] = useState<CrosswordClueType | null>(null);
+  const [showCelebration, setShowCelebration] = useState(false);
   const [message, setMessage] = useState<{
     text: string;
     type: "success" | "error";
@@ -326,16 +328,8 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
     setIncorrectCells(newIncorrectCells);
 
     if (isCorrect) {
-      setMessage({
-        text: "Congratulations! All answers are correct!",
-        type: "success",
-      });
-      toast.success("Congratulations! All answers are correct!");
+      setShowCelebration(true);
     } else {
-      setMessage({
-        text: "Some answers are incorrect. Keep trying!",
-        type: "error",
-      });
       toast.error("Some answers are incorrect. Keep trying!");
     }
   };
@@ -511,6 +505,27 @@ const CrosswordPuzzle: React.FC<CrosswordPuzzleProps> = ({ data }) => {
           </div>
         </div>
       </div>
+
+      <Dialog open={showCelebration} onOpenChange={setShowCelebration}>
+        <DialogContent className="celebration-dialog">
+          <div className="celebration-content">
+            <h2 className="text-4xl font-bold text-center mb-4">
+              🎉 Happy Birthday! 🎂
+            </h2>
+            <p className="text-xl text-center mb-6">
+              Congratulations! You've solved the puzzle!
+            </p>
+            <div className="flex justify-center">
+              <Button
+                onClick={() => setShowCelebration(false)}
+                className="celebration-button"
+              >
+                Thank you! 🎈
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

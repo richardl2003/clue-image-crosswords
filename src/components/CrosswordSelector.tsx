@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+import React, { useState } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
 interface CrosswordSelectorProps {
@@ -10,25 +16,27 @@ interface CrosswordSelectorProps {
   onUploadCrossword: (file: File) => void;
 }
 
-const CrosswordSelector: React.FC<CrosswordSelectorProps> = ({ 
-  availableCrosswords, 
-  onSelectCrossword, 
-  onUploadCrossword 
+const CrosswordSelector: React.FC<CrosswordSelectorProps> = ({
+  availableCrosswords,
+  onSelectCrossword,
+  onUploadCrossword,
 }) => {
-  const [selectedValue, setSelectedValue] = useState<string>(availableCrosswords[0]?.path || '');
-  
+  const [selectedValue, setSelectedValue] = useState<string>(
+    availableCrosswords[0]?.path || ""
+  );
+
   const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    
-    if (file.type !== 'application/json') {
-      toast.error('Please upload a JSON file');
+
+    if (file.type !== "application/json") {
+      toast.error("Please upload a JSON file");
       return;
     }
-    
+
     onUploadCrossword(file);
   };
-  
+
   const handleChange = (value: string) => {
     setSelectedValue(value);
     onSelectCrossword(value);
@@ -48,22 +56,6 @@ const CrosswordSelector: React.FC<CrosswordSelectorProps> = ({
           ))}
         </SelectContent>
       </Select>
-      
-      <div className="flex-1 flex items-center space-x-2">
-        <Input
-          type="file"
-          accept=".json"
-          id="crossword-upload"
-          className="hidden"
-          onChange={handleUpload}
-        />
-        <label
-          htmlFor="crossword-upload"
-          className="cursor-pointer flex-1 px-4 py-2 text-center bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/90 transition-colors"
-        >
-          Upload Custom JSON
-        </label>
-      </div>
     </div>
   );
 };

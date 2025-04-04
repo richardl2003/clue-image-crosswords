@@ -231,3 +231,40 @@
 .crossword-message.error {
   @apply text-red-600 dark:text-red-400;
 }
+
+.celebration-dialog {
+  @apply border-none shadow-xl overflow-hidden;
+}
+
+.celebration-dialog::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to right, #ec4899, #8b5cf6, #6366f1);
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+  z-index: -1;
+}
+
+.celebration-content {
+  @apply relative text-white py-8 px-4 z-10;
+}
+
+.celebration-button {
+  @apply bg-white text-purple-600 hover:bg-purple-100 transition-colors duration-200;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
