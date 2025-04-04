@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import CrosswordCell from './CrosswordCell';
 import { CellData, Direction, CrosswordClue } from '@/types/crossword';
@@ -26,14 +25,13 @@ const CrosswordGrid: React.FC<CrosswordGridProps> = ({
 }) => {
   const [focusedCell, setFocusedCell] = useState<{ row: number; col: number } | null>(null);
 
-  // Safety check for empty grid
-  if (!grid || grid.length === 0 || !grid[0]) {
-    return <div className="p-4 text-center">Loading crossword puzzle...</div>;
-  }
-
   useEffect(() => {
     setFocusedCell({ row: activeRow, col: activeCol });
   }, [activeRow, activeCol]);
+
+  if (!grid || grid.length === 0 || !grid[0]) {
+    return <div className="p-4 text-center">Loading crossword puzzle...</div>;
+  }
 
   const handleKeyDown = (row: number, col: number, e: React.KeyboardEvent) => {
     if (e.key === 'Tab') {
@@ -133,7 +131,6 @@ const CrosswordGrid: React.FC<CrosswordGridProps> = ({
            (activeDirection === 'down' && col === activeCol);
   };
 
-  // Get grid dimensions safely
   const rows = grid.length;
   const cols = grid[0] ? grid[0].length : 0;
 
